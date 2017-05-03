@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>The Trailer DB</title>
+	<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+	<section class="js-search">
+		<header>
+			<h1>Which movie / TV show trailer would you like to watch?</h1>
+		</header>
+		<form class="js-search-form">
+			<input type="text" name="searchInput" class="js-search-input" placeholder="e.g., Titanic">
+			<button name="js-search-button" type="submit">Search</button>
+			<p>Don't remember the movie name? That's okay..!</p>
+			<p>Enter the name of the actor and we'll find the movies / tv shows for you. </p>
+		</form>
+		<div class="js-search-results"></div>
+	</section>
+	<section class="js-movie-info hidden">
+		<img class="js-poster">
+		<div class="js-overview">
+		</div>			
+	</section>
+	<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+	<script src="app.js"></script>
+</body>
+</html>

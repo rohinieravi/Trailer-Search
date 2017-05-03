@@ -1,0 +1,19 @@
+* {
+	box-sizing: border-box;
+}
+
+.js-result-item {
+	padding:5px;
+	border: 1px solid black;
+	margin-bottom: 10px;
+	width:40%;
+}
+
+h2 {
+	display: inline;
+	margin-left:20px;
+}
+
+.hidden {
+	display:none;
+}
