@@ -94,6 +94,12 @@ var renderSearchResults = function (state) {
 	$('.js-search-results').html(results);
 };
 
+var renderMovieInfo = function (item) {
+	$('.js-poster').attr('src', getThumbnailSrc(item));
+	$('.js-overview').find('h2').text(getTitle(item))
+	$('.js-overview').find('p').text(item.overview);
+};
+
 var submitSearchForm = function (event) {
 	event.preventDefault();
 	var query = $(this).find('.js-search-input').val();
@@ -105,7 +111,7 @@ var getItemInfo = function (event) {
 	$('.js-movie-info').removeClass('hidden');
 	var currentId = $(event.target).closest('.js-result-item').attr('id');
 	var currentItem = findItembyId(state, currentId);
-	
+	renderMovieInfo(currentItem);
 
 };
 
