@@ -3,6 +3,7 @@
 <head>
 	<title>The Trailer DB</title>
 	<link rel="stylesheet" type="text/css" href="main.css">
+	<link rel="stylesheet" type="text/css" href="dist/lity.css">
 </head>
 <body>
 	<section class="js-search">
@@ -18,7 +19,8 @@
 		<div class="js-search-results"></div>
 	</section>
 	<section class="js-movie-info hidden">
-		<img class="js-poster">
+		
+		<a data-lity class='js-lightbox'><img class="js-poster"></a>
 		<div class="js-overview">
 			<h2></h2>
 			<h3>Overview</h3>
@@ -26,6 +28,7 @@
 		</div>			
 	</section>
 	<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+	<script src="dist/lity.js"></script>
 	<script src="app.js"></script>
 </body>
 </html>
