@@ -103,6 +103,12 @@ var addTrailertoInfo = function (data) {
 		renderMovieInfo(state.currentItem);
 };
 
+var clearState = function (state) {
+	state.items = [],
+	state.imageConfig = [],
+	state.currentTrailer = [],
+	state.currentItem = []
+};
 
 var getTitle = function (item) {
 	if(item.title) {
@@ -145,18 +151,20 @@ var renderSearchResults = function (state) {
 };
 
 var renderMovieInfo = function (item) {
-	//if(state.currentTrailer === []){
-		$('.js-poster').attr('src', getImageSrc(state, item, Math.floor(state.imageConfig.poster_sizes.length/2)));
-	//}
-	//else {
-		$('.js-lightbox').attr('href', 'https://www.youtube.com/watch?v='+state.currentTrailer.key);
-	//}
+	$('.js-poster').attr('src', getImageSrc(state, item, Math.floor(state.imageConfig.poster_sizes.length/2)));
+	if(state.currentTrailer.length !== 0) {
+		$('.js-lightbox').attr('href', 'https://www.youtube.com/watch?v=' + state.currentTrailer.key);
+	}
+	else {
+		$('.js-overview').append('<p>No trailers available.</p>');
+	}
 	$('.js-overview').find('h2').text(getTitle(item))
 	$('.js-overview').find('p').text(item.overview);
 };
 
 var submitSearchForm = function (event) {
 	event.preventDefault();
+	clearState(state);
 	var query = $(this).find('.js-search-input').val();
 	getImageConfiguration(addImageConfiguration);
 	getSearchResultsFromAPI(query, addSearchResults);
@@ -175,3 +183,9 @@ var getItemInfo = function (event) {
 $('.js-search-form').submit(submitSearchForm);
 
 $('.js-search-results').on('click', '.js-result-item', getItemInfo);
+
+$('.js-back').click(function(event) {
+	$('.js-search').removeClass('hidden');
+	$('.js-movie-info').addClass('hidden');
+	renderSearchResults(state);
+});
