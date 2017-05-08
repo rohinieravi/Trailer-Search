@@ -3,8 +3,7 @@ var API_KEY = '33f92bf010f98be95b93866a815e0504';
 var state = {
 	items: [],
 	imageConfig: [],
-	currentTrailer: [],
-	currentItem: []
+	currentItem: {}
 };
 
 var getSearchResultsFromAPI = function (searchItem, callback) {
@@ -49,9 +48,10 @@ var getImageConfiguration = function (callback) {
 
 var getTrailerFromID = function (item, callback) {
 	var settings = {
-		url: MOVIEDBAPI_URL + '/' + item.media_type + '/' + item.id + '/videos',
+		url: MOVIEDBAPI_URL + '/' + item.media_type + '/' + item.id,
 		data: {
-			api_key: API_KEY
+			api_key: API_KEY,
+			append_to_response: 'videos'
 		},
 		datatype: 'json',
 		type: 'GET',
@@ -67,8 +67,10 @@ var addSearchResults = function (data) {
 				getMoviesByActor(item.id, addMoviesByActor);
 			}
 			else {
-				state.items.push(item);
-					renderSearchResults(state);
+				if(item.poster_path !== null) {
+					state.items.push(item);
+				}
+				renderSearchResults(state);
 			}
 		});		
 	}
@@ -79,7 +81,9 @@ var addSearchResults = function (data) {
 
 var addMoviesByActor = function (data) {
 	data.cast.forEach(function(pItem) {
-		state.items.push(pItem);
+		if(pItem.poster_path !== null) {
+			state.items.push(pItem);
+		}
 	});
 		renderSearchResults(state);
 
@@ -92,10 +96,13 @@ var addImageConfiguration = function (data) {
 }; 
 
 var addTrailertoInfo = function (data) {
-	if(data.results) {
-		for( var i = 0; i < data.results.length; i++ ) {
-			if(data.results[i].type === 'Trailer') {
-				state.currentTrailer = data.results[i];
+	if(data.videos.results) {
+		if(!state.currentItem.overview) {
+			state.currentItem.overview = data.overview;
+		}
+		for( var i = 0; i < data.videos.results.length; i++ ) {
+			if(data.videos.results[i].type === 'Trailer') {
+				state.currentItem.trailer = data.videos.results[i];
 				break;
 			}
 		}
@@ -106,7 +113,6 @@ var addTrailertoInfo = function (data) {
 var clearState = function (state) {
 	state.items = [],
 	state.imageConfig = [],
-	state.currentTrailer = [],
 	state.currentItem = []
 };
 
@@ -121,7 +127,6 @@ var getTitle = function (item) {
 
 var getImageSrc = function (state, item, size) {
 	if(item.poster_path !== null) {
-		//return 'https://image.tmdb.org/t/p/w185_and_h278_bestv2/' + item.poster_path ;
 		return state.imageConfig.secure_base_url + state.imageConfig.poster_sizes[size] + item.poster_path;
 	}
 	else {
@@ -129,7 +134,20 @@ var getImageSrc = function (state, item, size) {
 	}
 };
 
-
+var getImageSrcSet = function (state, item) {
+	var srcSet = '';
+	if (item.poster_path === null) {
+		return srcSet;
+	}
+	for ( var i = 0; i < state.imageConfig.poster_sizes.length-2; i++ ) {
+		if ( i !== 0 ) {
+			srcSet += ', ';
+		}
+		srcSet += state.imageConfig.secure_base_url + state.imageConfig.poster_sizes[i] + item.poster_path + ' ' + 
+		state.imageConfig.poster_sizes[i].slice(1) + 'w';
+	}
+	return srcSet;
+};
 
 var findItembyId = function (state, id) {
 	for( var i = 0; i < state.items.length; i++ ) {
@@ -143,23 +161,32 @@ var findItembyId = function (state, id) {
 var renderSearchResults = function (state) {
 	var results = ''
 	state.items.forEach(function(item) {
-		results += '<div class="js-result-item" id="' + item.id +'" >' +
-				'<img src="' + getImageSrc(state, item, 0) + '">' +
-				'<h2>' + getTitle(item) + ' (' + item.media_type + ')</h2></div>';
+		results += '<a href=#><div class="js-result-item" id="' + item.id +'" >' +
+				'<img src="' + getImageSrc(state, item, 0) + '" sizes="10vw" srcSet="' + getImageSrcSet(state, item) + '">' +
+				'<h2>' + getTitle(item) + ' (' + item.media_type + ')</h2></div></a>';
 	});
 	$('.js-search-results').html(results);
 };
 
 var renderMovieInfo = function (item) {
+	$('.js-search').addClass('hidden');
+	$('.js-movie-info').removeClass('hidden');
+	$('.js-overview').html('');
 	$('.js-poster').attr('src', getImageSrc(state, item, Math.floor(state.imageConfig.poster_sizes.length/2)));
-	if(state.currentTrailer.length !== 0) {
-		$('.js-lightbox').attr('href', 'https://www.youtube.com/watch?v=' + state.currentTrailer.key);
+	$('.js-poster').attr('srcset', getImageSrcSet(state, item));
+	$('.js-overview').append('<h2>' + getTitle(item) + '</h2>');
+	if( item.overview ) {
+		$('.js-overview').append('<h3>Overview</h3><p>' + item.overview + '</p>');
+	}
+	
+	if(state.currentItem.trailer.length !== 0) {
+		$('.js-lightbox').attr('href', 'https://www.youtube.com/watch?v=' + state.currentItem.trailer.key);
+		$('.js-lightbox').attr('data-lity', 'true');
 	}
 	else {
 		$('.js-overview').append('<p>No trailers available.</p>');
 	}
-	$('.js-overview').find('h2').text(getTitle(item))
-	$('.js-overview').find('p').text(item.overview);
+	
 };
 
 var submitSearchForm = function (event) {
@@ -171,8 +198,7 @@ var submitSearchForm = function (event) {
 };
 
 var getItemInfo = function (event) {
-	$('.js-search').addClass('hidden');
-	$('.js-movie-info').removeClass('hidden');
+
 	var currentId = $(event.target).closest('.js-result-item').attr('id');
 	var currentItem = findItembyId(state, currentId);
 	state.currentItem = currentItem;
@@ -185,6 +211,7 @@ $('.js-search-form').submit(submitSearchForm);
 $('.js-search-results').on('click', '.js-result-item', getItemInfo);
 
 $('.js-back').click(function(event) {
+	event.preventDefault();
 	$('.js-search').removeClass('hidden');
 	$('.js-movie-info').addClass('hidden');
 	renderSearchResults(state);

@@ -7,13 +7,43 @@
 	border: 1px solid black;
 	margin-bottom: 10px;
 	width:40%;
+	
+	margin-left: 10px
 }
 
-h2 {
+.js-search h2 {
 	display: inline;
-	margin-left:20px;
+	margin-left: 10px;
+}
+
+.js-search a{
+	text-decoration: none;
+	color:black;
 }
 
 .hidden {
 	display:none;
+}
+
+.js-movie-info {
+	position: relative;
+}
+
+.js-info {
+	position:absolute;
+	left:35%;
+}
+
+.js-lightbox {
+	position: absolute;
+}
+
+
+i {
+	position: absolute;
+	top:45%;
+	left:45%;
+	color: #fff;
+    opacity: .8;
+    text-shadow: 0px 0px 30px rgba(0, 0, 0, 0.5);
 }
