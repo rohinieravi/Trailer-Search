@@ -111,9 +111,9 @@ var addTrailertoInfo = function (data) {
 };
 
 var clearState = function (state) {
-	state.items = [],
-	state.imageConfig = [],
-	state.currentItem = []
+	state.items = [];
+	//state.imageConfig = [],
+	state.currentItem = [];
 };
 
 var getTitle = function (item) {
@@ -179,12 +179,17 @@ var renderMovieInfo = function (item) {
 		$('.js-overview').append('<h3>Overview</h3><p>' + item.overview + '</p>');
 	}
 	
-	if(state.currentItem.trailer.length !== 0) {
+	if(state.currentItem.trailer && state.currentItem.trailer.length !== 0) {
 		$('.js-lightbox').attr('href', 'https://www.youtube.com/watch?v=' + state.currentItem.trailer.key);
 		$('.js-lightbox').attr('data-lity', 'true');
+		$('i').addClass('fa fa-youtube-play fa-4x');
 	}
 	else {
 		$('.js-overview').append('<p>No trailers available.</p>');
+		$('.js-lightbox').removeAttr('href');
+		$('.js-lightbox').removeAttr('data-lity');
+		$('i').removeClass('fa fa-youtube-play fa-4x');
+
 	}
 	
 };
@@ -193,7 +198,6 @@ var submitSearchForm = function (event) {
 	event.preventDefault();
 	clearState(state);
 	var query = $(this).find('.js-search-input').val();
-	getImageConfiguration(addImageConfiguration);
 	getSearchResultsFromAPI(query, addSearchResults);
 };
 
@@ -205,6 +209,10 @@ var getItemInfo = function (event) {
 	getTrailerFromID(currentItem, addTrailertoInfo);
 
 };
+
+$(function(){
+	getImageConfiguration(addImageConfiguration);
+});
 
 $('.js-search-form').submit(submitSearchForm);
 

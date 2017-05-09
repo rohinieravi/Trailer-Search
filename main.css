@@ -8,8 +8,10 @@
 	margin-bottom: 10px;
 	width:40%;
 	
-	margin-left: 10px
+	margin-left: 10px;
+	vertical-align: middle;
 }
+
 
 .js-search h2 {
 	display: inline;
