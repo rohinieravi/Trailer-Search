@@ -18,7 +18,6 @@ body{
 }
 
 .js-result-item:hover {
-	height:250px;
 	background-color: grey;
 }
 
@@ -29,12 +28,10 @@ body{
 
 .js-search-results img{
 	float: left;
+	margin-right: 10px;
 }
 
-.info {
-	display: inline-block;
-	margin-left: 10px;
-}
+
 
 .js-search a{
 	text-decoration: none;
