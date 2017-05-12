@@ -17,6 +17,11 @@ body{
 	border-radius: 5px;
 }
 
+.js-result-item:hover {
+	height:250px;
+	background-color: grey;
+}
+
 .js-search-form {
 	margin: 50px 0px 30px 0px;
 	line-height: 5px;
