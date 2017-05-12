@@ -4,23 +4,29 @@
 	<title>The Trailer DB</title>
 	<link rel="stylesheet" type="text/css" href="main.css">
 	<link rel="stylesheet" type="text/css" href="dist/lity.css">
+	<link rel="stylesheet" type="text/css" href="float-grid.css">
+	<link href="https://fonts.googleapis.com/css?family=Raleway|Rock+Salt" rel="stylesheet">
 </head>
 <body>
+	<header>
+		<img src="https://perjonsson.files.wordpress.com/2012/07/film-reel-with-images.jpg" alt="">
+		<h1>The Trailer DB</h1>
+	</header>
 	<section class="js-search">
-		<header>
-			<h1>Which movie / TV show trailer would you like to watch?</h1>
-		</header>
-		<form class="js-search-form">
-			<input type="text" name="searchInput" class="js-search-input" placeholder="e.g., Titanic">
-			<button name="js-search-button" type="submit">Search</button>
-			<p>Don't remember the movie name? That's okay..!</p>
-			<p>Enter the name of the actor and we'll find the movies / tv shows for you. </p>
-		</form>
+		<div class="row">
+			<div class="col-12">
+				<form class="js-search-form">
+					<p>Don't remember the movie name? That's okay..!</p>
+					<p>Enter the name of the actor and we'll find the movies or tv shows for you. </p>
+					<input type="text" name="searchInput" class="js-search-input" placeholder="Enter movie or TV show name..." required>
+					<button name="js-search-button" type="submit">Search</button>
+				</form>
+			</div>	
+		</div>
 		<div class="js-search-results"></div>
 	</section>
-	<section class="js-movie-info hidden">
-		
-		<a class='js-lightbox'><img class="js-poster" sizes="30vw"><i class="fa fa-youtube-play fa-4x" aria-hidden="true"></i></a>
+	<section class="js-movie-info hidden">	
+		<a class='js-lightbox'><img class="js-poster" sizes="30vw" alt=""><i class="fa fa-youtube-play fa-4x" aria-hidden="true"></i></a>
 		<div class="js-info">
 			<div class="js-overview"></div>	
 			<a href=# class="js-back"><<< Back to Search Results </a>

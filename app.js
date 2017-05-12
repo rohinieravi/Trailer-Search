@@ -149,6 +149,34 @@ var getImageSrcSet = function (state, item) {
 	return srcSet;
 };
 
+var getItemType = function (item) {
+	if(item.media_type === 'movie') {
+		return 'Movie';
+	}
+	else {
+		return 'TV';
+	}
+};
+
+var getReleaseDate = function (item) {
+	if(item.release_date && item.release_date !== 'undefined') {
+		return item.release_date;
+	}
+	else {
+		return 'Unknown';
+	}
+};
+
+var getRating = function (item) {
+	if(item.vote_average) {
+		return item.vote_average.toFixed(1);
+	}
+	else {
+		return '0.0';
+	}
+
+}
+
 var findItembyId = function (state, id) {
 	for( var i = 0; i < state.items.length; i++ ) {
 		if( state.items[i].id == id ) {
@@ -159,11 +187,24 @@ var findItembyId = function (state, id) {
 };
 
 var renderSearchResults = function (state) {
-	var results = ''
+	var results = '';
+	var i = 0;
+	var prev = 0;
 	state.items.forEach(function(item) {
-		results += '<a href=#><div class="js-result-item" id="' + item.id +'" >' +
-				'<img src="' + getImageSrc(state, item, 0) + '" sizes="10vw" srcSet="' + getImageSrcSet(state, item) + '">' +
-				'<h2>' + getTitle(item) + ' (' + item.media_type + ')</h2></div></a>';
+		if(i%2 == 0) {
+			results += '<div class="row">';
+		}
+		results += '<div class="col-6"><a href="#"><div class="js-result-item" id="' + item.id +'" >' +
+				'<img src="' + getImageSrc(state, item, 0) + '" sizes="10vw" srcSet="' + getImageSrcSet(state, item) + '" alt="">' +
+				'<div class="info"><h2>' + getTitle(item) + '</h2>' +
+				'<p>Type: ' + getItemType(item) + '</p>' +
+				'<p>Release Date: '+ getReleaseDate(item) +'</p>' +
+				'<p>Rating: ' + getRating(item) +'</p></div>' +
+				'</div></a></div>';
+		if((i-1)%2 == 0) {
+			results += '</div>';
+		}
+		i++;
 	});
 	$('.js-search-results').html(results);
 };
