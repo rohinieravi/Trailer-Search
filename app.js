@@ -149,6 +149,15 @@ var getImageSrcSet = function (state, item) {
 	return srcSet;
 };
 
+var getBackdropSrc = function (state, item, size) {
+	if(item.backdrop_path !== null) {
+		return state.imageConfig.secure_base_url + state.imageConfig.backdrop_sizes[size] + item.backdrop_path;
+	}
+	else {
+		return '';
+	}
+};
+
 var getItemType = function (item) {
 	if(item.media_type === 'movie') {
 		return 'Movie';
@@ -213,6 +222,8 @@ var renderMovieInfo = function (item) {
 	$('.js-search').addClass('hidden');
 	$('.js-movie-info').removeClass('hidden');
 	$('.js-overview').html('');
+	$('body').attr('style', 'background-image:linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)),url("'+getBackdropSrc(state, item, Math.floor(state.imageConfig.backdrop_sizes.length/2))+'")');
+
 	$('.js-poster').attr('src', getImageSrc(state, item, Math.floor(state.imageConfig.poster_sizes.length/2)));
 	$('.js-poster').attr('srcset', getImageSrcSet(state, item));
 	$('.js-overview').append('<h2>' + getTitle(item) + '</h2>');
@@ -261,6 +272,8 @@ $('.js-search-results').on('click', '.js-result-item', getItemInfo);
 
 $('.js-back').click(function(event) {
 	event.preventDefault();
+	$('body').attr('style', 'background-image:none');
+
 	$('.js-search').removeClass('hidden');
 	$('.js-movie-info').addClass('hidden');
 	renderSearchResults(state);

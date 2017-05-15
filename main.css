@@ -7,7 +7,9 @@ body{
 	background-color: black;
 	color: white;
 	font-family: 'Raleway', sans-serif;
+	background-size: cover;
 }
+
 .js-result-item {
 	padding:5px;
 	border: 1px solid black;
@@ -18,19 +20,31 @@ body{
 }
 
 .js-result-item:hover {
-	background-color: grey;
+	/*background-color: grey;*/
+	opacity:0.5;
+}
+
+.js-result-item h2, p {
+	margin-top:0;
+}
+
+.js-result-item p {
+	margin-bottom: 5px;
 }
 
 .js-search-form {
 	margin: 50px 0px 30px 0px;
-	line-height: 5px;
+}
+
+.js-search-form p{
+	margin-bottom: 5px;
 }
 
 .js-search-results img{
 	float: left;
 	margin-right: 10px;
+	height: 100%;
 }
-
 
 
 .js-search a{
@@ -45,6 +59,10 @@ body{
 .js-movie-info {
 	margin-top: 20px;
 	position: relative;
+}
+
+.js-movie-info img {
+	height: 100%;
 }
 
 .js-info {
@@ -67,13 +85,25 @@ i {
 }
 
 .js-search-input {
-	width:30%;
+	width:50%;
 	padding: 5px;
 	margin-top: 10px;
+	border-radius: 5px;
+	height:50px;
+	font-size: 20px;
 }
 
+
 button {
-	padding: 5px;
+	height:50px;
+	border-radius: 5px;
+	background-image: url("http://icons.iconarchive.com/icons/gakuseisean/aire/48/Search-icon.png");
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-color: black;
+	border-color: black;
+	width:50px;
+	margin-left: 10px;
 }
 
 header{
@@ -93,4 +123,26 @@ header img{
 	position: absolute;
 	left:10px;
 	height:70px;
+}
+
+.js-back {
+	background-color: #00cca3;
+	border-radius: 5px;
+	text-decoration: none;
+	font-weight: bold;
+	padding: 5px;
+	color:black;
+}
+
+.js-overview h3 {
+	margin-bottom: 10px;
+}
+
+.js-overview p {
+	margin-bottom: 20px;
+}
+
+.js-overview {
+	
+	
 }
