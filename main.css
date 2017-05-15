@@ -95,14 +95,14 @@ i {
 
 
 button {
-	height:50px;
+	height:40px;
 	border-radius: 5px;
-	background-image: url("http://icons.iconarchive.com/icons/gakuseisean/aire/48/Search-icon.png");
+	background-image: url("http://icons.iconarchive.com/icons/gakuseisean/aire/32/Search-icon.png");
 	background-repeat: no-repeat;
 	background-size: contain;
 	background-color: black;
 	border-color: black;
-	width:50px;
+	width:40px;
 	margin-left: 10px;
 }
 
