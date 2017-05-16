@@ -75,7 +75,7 @@ var addSearchResults = function (data) {
 		});		
 	}
 	else {
-		$('.js-search-results').html('<p>No results available for the given search.</p>');
+		$('.js-no-results').html('<p>No results available for the given search.</p>');
 	}	
 };
 
@@ -199,23 +199,29 @@ var renderSearchResults = function (state) {
 	var results = '';
 	var i = 0;
 	var prev = 0;
-	state.items.forEach(function(item) {
-		if(i%2 == 0) {
-			results += '<div class="row">';
-		}
-		results += '<div class="col-6"><a href="#"><div class="js-result-item" id="' + item.id +'" >' +
-				'<img src="' + getImageSrc(state, item, 0) + '" sizes="10vw" srcSet="' + getImageSrcSet(state, item) + '" alt="">' +
-				'<div class="info"><h2>' + getTitle(item) + '</h2>' +
-				'<p>Type: ' + getItemType(item) + '</p>' +
-				'<p>Release Date: '+ getReleaseDate(item) +'</p>' +
-				'<p>Rating: ' + getRating(item) +'</p></div>' +
-				'</div></a></div>';
-		if((i-1)%2 == 0) {
-			results += '</div>';
-		}
-		i++;
-	});
-	$('.js-search-results').html(results);
+	if(state.items.length === 0) {
+		$('.js-no-results').html('<p>No results available for the given search.</p>');
+	}
+	else
+	{
+		state.items.forEach(function(item) {
+			if(i%2 == 0) {
+				results += '<div class="row">';
+			}
+			results += '<div class="col-6"><a href="#"><div class="js-result-item" id="' + item.id +'" >' +
+					'<img src="' + getImageSrc(state, item, 0) + '" sizes="10vw" srcSet="' + getImageSrcSet(state, item) + '" alt="">' +
+					'<div class="info"><h2>' + getTitle(item) + '</h2>' +
+					'<p>Type: ' + getItemType(item) + '</p>' +
+					'<p>Release Date: '+ getReleaseDate(item) +'</p>' +
+					'<p>Rating: ' + getRating(item) +'</p></div>' +
+					'</div></a></div>';
+			if((i-1)%2 == 0) {
+				results += '</div>';
+			}
+			i++;
+		});
+		$('.js-search-results').html(results);
+	}
 };
 
 var renderMovieInfo = function (item) {
@@ -234,13 +240,13 @@ var renderMovieInfo = function (item) {
 	if(state.currentItem.trailer && state.currentItem.trailer.length !== 0) {
 		$('.js-lightbox').attr('href', 'https://www.youtube.com/watch?v=' + state.currentItem.trailer.key);
 		$('.js-lightbox').attr('data-lity', 'true');
-		$('i').addClass('fa fa-youtube-play fa-4x');
+		$('i').addClass('fa fa-youtube-play fa-2x');
 	}
 	else {
 		$('.js-overview').append('<p>No trailers available.</p>');
 		$('.js-lightbox').removeAttr('href');
 		$('.js-lightbox').removeAttr('data-lity');
-		$('i').removeClass('fa fa-youtube-play fa-4x');
+		$('i').removeClass('fa fa-youtube-play fa-2x');
 
 	}
 	
@@ -249,6 +255,8 @@ var renderMovieInfo = function (item) {
 var submitSearchForm = function (event) {
 	event.preventDefault();
 	clearState(state);
+	$('.js-no-results').html('');
+	$('.js-search-results').html('');
 	var query = $(this).find('.js-search-input').val();
 	getSearchResultsFromAPI(query, addSearchResults);
 };

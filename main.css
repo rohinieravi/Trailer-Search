@@ -48,6 +48,7 @@ body{
 }
 
 
+
 .js-search a{
 	text-decoration: none;
 	color:black;
@@ -68,11 +69,18 @@ body{
 
 .js-info {
 	position:absolute;
-	left:35%;
+	left:25%;
+	margin-right: 30px;
 }
 
 .js-lightbox {
 	position: absolute;
+}
+
+.js-poster {
+	margin-left: 30px;
+	border: 1px solid grey;
+	border-radius: 5px;
 }
 
 
@@ -87,11 +95,11 @@ i {
 
 .js-search-input {
 	width:50%;
-	padding: 5px;
+	padding: 10px;
 	margin-top: 10px;
 	border-radius: 5px;
 	height:40px;
-	font-size: 20px;
+	background-color: #f2f2f2;
 }
 
 
@@ -133,6 +141,11 @@ header img{
 	font-weight: bold;
 	padding: 5px;
 	color:black;
+	font-size: smaller;
+}
+
+.back {
+	margin-top: 40px;
 }
 
 .js-overview h3 {
