@@ -72,4 +72,14 @@
   .col-12 {
     width: 100%;
   }
+
+  
+  
+}
+
+@media only screen and (max-width: 640px) {
+
+body {
+    font-size: smaller;
+  }
 }

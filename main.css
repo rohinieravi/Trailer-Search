@@ -8,6 +8,7 @@ body{
 	color: white;
 	font-family: 'Raleway', sans-serif;
 	background-size: cover;
+	background-repeat: repeat, no-repeat;
 }
 
 .js-result-item {
@@ -89,7 +90,7 @@ i {
 	padding: 5px;
 	margin-top: 10px;
 	border-radius: 5px;
-	height:50px;
+	height:40px;
 	font-size: 20px;
 }
 
@@ -142,7 +143,3 @@ header img{
 	margin-bottom: 20px;
 }
 
-.js-overview {
-	
-	
-}
