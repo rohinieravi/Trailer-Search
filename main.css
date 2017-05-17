@@ -2,7 +2,7 @@
 	box-sizing: border-box;
 }
 
-body{
+body {
 	margin: 0;
 	background-color: black;
 	color: white;
@@ -21,12 +21,11 @@ body{
 }
 
 .js-result-item:hover {
-	/*background-color: grey;*/
-	opacity:0.5;
+	opacity: 0.5;
 }
 
 .js-result-item h2, p {
-	margin-top:0;
+	margin-top: 0;
 }
 
 .js-result-item p {
@@ -37,25 +36,23 @@ body{
 	margin: 50px 0px 30px 0px;
 }
 
-.js-search-form p{
+.js-search-form p {
 	margin-bottom: 5px;
 }
 
-.js-search-results img{
+.js-search-results img {
 	float: left;
 	margin-right: 10px;
 	height: 100%;
 }
 
-
-
-.js-search a{
+.js-search a {
 	text-decoration: none;
-	color:black;
+	color: black;
 }
 
 .hidden {
-	display:none;
+	display: none;
 }
 
 .js-movie-info {
@@ -68,8 +65,8 @@ body{
 }
 
 .js-info {
-	position:absolute;
-	left:25%;
+	position: absolute;
+	left: 25%;
 	margin-right: 30px;
 }
 
@@ -83,39 +80,38 @@ body{
 	border-radius: 5px;
 }
 
-
 i {
 	position: absolute;
-	top:45%;
-	left:45%;
+	top: 45%;
+	left: 45%;
 	color: #fff;
     opacity: .8;
     text-shadow: 0px 0px 30px rgba(0, 0, 0, 0.5);
 }
 
 .js-search-input {
-	width:50%;
+	width: 50%;
 	padding: 10px;
 	margin-top: 10px;
 	border-radius: 5px;
-	height:40px;
+	height: 40px;
 	background-color: #f2f2f2;
 }
 
 
 button {
-	height:40px;
+	height: 40px;
 	border-radius: 5px;
 	background-image: url("http://icons.iconarchive.com/icons/gakuseisean/aire/32/Search-icon.png");
 	background-repeat: no-repeat;
 	background-size: contain;
 	background-color: black;
 	border-color: black;
-	width:40px;
+	width: 40px;
 	margin-left: 10px;
 }
 
-header{
+header {
 	text-align: right;
 	background-color: #00cca3;
 	padding: 10px;
@@ -128,10 +124,10 @@ header h1 {
 	margin: 0;
 }
 
-header img{
+header img {
 	position: absolute;
-	left:10px;
-	height:70px;
+	left: 10px;
+	height: 70px;
 }
 
 .js-back {
@@ -140,7 +136,7 @@ header img{
 	text-decoration: none;
 	font-weight: bold;
 	padding: 5px;
-	color:black;
+	color: black;
 	font-size: smaller;
 }
 
