@@ -240,13 +240,13 @@ var renderMovieInfo = function (item) {
 	if(state.currentItem.trailer && state.currentItem.trailer.length !== 0) {
 		$('.js-lightbox').attr('href', 'https://www.youtube.com/watch?v=' + state.currentItem.trailer.key);
 		$('.js-lightbox').attr('data-lity', 'true');
-		$('i').addClass('fa fa-youtube-play fa-2x');
+		$('i').addClass('fa fa-youtube-play fa-3x');
 	}
 	else {
 		$('.js-overview').append('<p>No trailers available.</p>');
 		$('.js-lightbox').removeAttr('href');
 		$('.js-lightbox').removeAttr('data-lity');
-		$('i').removeClass('fa fa-youtube-play fa-2x');
+		$('i').removeClass('fa fa-youtube-play fa-3x');
 
 	}
 	
