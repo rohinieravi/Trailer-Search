@@ -77,13 +77,12 @@ var addSearchResults = function (data) {
 				if( item.poster_path !== null ) {
 					state.items.push(item);
 				}
-				renderSearchResults(state);
+				if(state.items.length !== 0){
+					renderSearchResults(state);
+				}
 			}
 		});		
 	}
-	else {
-		$('.js-no-results').html('<p>No results available for the given search.</p>');
-	}	
 };
 
 /*Callback for getMoviesByActor, which adds the results to state object and renders results if search item is an actor*/
