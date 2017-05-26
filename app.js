@@ -83,6 +83,9 @@ var addSearchResults = function (data) {
 			}
 		});		
 	}
+	else {
+		$('.js-no-results').html('<p>No results available for the given search.</p>');
+	}	
 };
 
 /*Callback for getMoviesByActor, which adds the results to state object and renders results if search item is an actor*/
