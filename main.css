@@ -112,7 +112,6 @@ button {
 }
 
 header {
-	/*text-align: right;*/
 	background-color: #00cca3;
 	padding: 10px;
 	color: black;
@@ -125,8 +124,6 @@ header h1 {
 }
 
 header img {
-	/*position: absolute;
-	left: 10px;*/
 	height: 70px;
 }
 
