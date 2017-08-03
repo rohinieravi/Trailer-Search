@@ -251,7 +251,7 @@ var renderMovieInfo = function (item) {
 	$('.js-movie-info').removeClass('hidden');
 	$('.js-overview').html('');
 	//adding backdrop
-	$('body').attr('style', 'background-image:linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)),url("'+getBackdropSrc(state, item, Math.floor(state.imageConfig.backdrop_sizes.length/2))+'")');
+	$('.js-movie-info').attr('style', 'background-image:linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)),url("'+getBackdropSrc(state, item, Math.floor(state.imageConfig.backdrop_sizes.length/2))+'")');
 	$('.js-poster').attr('src', getImageSrc(state, item, Math.floor(state.imageConfig.poster_sizes.length/2)));
 	$('.js-poster').attr('srcset', getImageSrcSet(state, item));
 	$('.js-overview').append('<h2>' + getTitle(item) + '</h2>');
@@ -263,13 +263,13 @@ var renderMovieInfo = function (item) {
 	if( state.currentItem.trailer && state.currentItem.trailer.length !== 0 ) {
 		$('.js-lightbox').attr('href', 'https://www.youtube.com/watch?v=' + state.currentItem.trailer.key);
 		$('.js-lightbox').attr('data-lity', 'true');
-		$('i').addClass('fa fa-youtube-play fa-3x');
+		$('i').addClass('fa fa-youtube-play fa-2x');
 	}
 	else {
 		$('.js-overview').append('<p>No trailers available.</p>');
 		$('.js-lightbox').removeAttr('href');
 		$('.js-lightbox').removeAttr('data-lity');
-		$('i').removeClass('fa fa-youtube-play fa-3x');
+		$('i').removeClass('fa fa-youtube-play fa-2x');
 	}
 };
 

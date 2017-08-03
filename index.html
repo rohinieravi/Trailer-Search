@@ -10,10 +10,11 @@
 <body>
 	<header>
 		<div class="row">
-			<div class="col-1">
+			<div class="col-12">
 				<img src="images/film-reel-with-images.jpg" alt="">
+				<h1>The Trailer DB</h1>
+
 			</div>
-			<h1>The Trailer DB</h1>
 		</div>
 	</header>
 	<section class="js-search">
@@ -31,16 +32,26 @@
 		<div class="js-search-results"></div>
 	</section>
 	<section class="js-movie-info hidden">	
-			<a class='js-lightbox'>
-				<img class="js-poster" sizes="20vw" alt="">
-				<i class="fa fa-youtube-play fa-3x" aria-hidden="true"></i>
-			</a>
-			<div class="js-info">
-				<div class="js-overview"></div>	
+		<div class="row">
+			<div class="col-4">
+				<a class='js-lightbox'>
+					<img class="js-poster" sizes="20vw" alt="">
+					<i class="fa fa-youtube-play fa-2x" aria-hidden="true"></i>
+				</a>
+			</div>
+			<div class="col-8">
+				<div class="js-info">
+					<div class="js-overview"></div>	
+				</div>	
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-6">
 				<div class="back">
-					<a href=# class="js-back"><<< Back to Search Results </a>
+						<a href=# class="js-back"><<< Back to Search Results </a>
 				</div>
-			</div>	
+			</div>
+		</div>
 	</section>
 	<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 	<script src="dist/lity.js"></script>

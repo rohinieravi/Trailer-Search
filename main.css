@@ -7,8 +7,7 @@ body {
 	background-color: black;
 	color: white;
 	font-family: 'Raleway', sans-serif;
-	background-size: cover;
-	background-repeat: repeat, no-repeat;
+	
 }
 
 .js-result-item {
@@ -56,26 +55,25 @@ body {
 }
 
 .js-movie-info {
-	margin-top: 20px;
-	position: relative;
+	padding-top: 20px;
+	/*position: relative;*/
+	height:720px;
+	background-size: cover;
+	background-repeat: repeat, no-repeat;
 }
 
 .js-movie-info img {
 	height: 100%;
 }
 
-.js-info {
-	position: absolute;
-	left: 25%;
-	margin-right: 30px;
-}
+
 
 .js-lightbox {
-	position: absolute;
+	float:left;
+	position: relative;
 }
 
 .js-poster {
-	margin-left: 30px;
 	border: 1px solid grey;
 	border-radius: 5px;
 }
@@ -121,10 +119,12 @@ header {
 
 header h1 {
 	margin: 0;
+	display: inline;
 }
 
 header img {
 	height: 70px;
+	vertical-align: middle;
 }
 
 .js-back {
@@ -138,7 +138,7 @@ header img {
 }
 
 .back {
-	margin-top: 40px;
+	margin-top: 20px;
 }
 
 .js-overview h3 {
