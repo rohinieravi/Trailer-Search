@@ -3,7 +3,7 @@
 }
 
 body {
-	margin: 0 0 50px 0;
+	margin: 0;
 	background-color: black;
 	color: white;
 	font-family: 'Raleway', sans-serif;
@@ -38,6 +38,9 @@ body {
 .js-search-form p {
 	margin-bottom: 5px;
 }
+.js-search-results {
+	margin-bottom: 50px;
+}
 
 .js-search-results img {
 	float: left;
@@ -56,14 +59,13 @@ body {
 
 .js-movie-info {
 	padding-top: 20px;
-	/*position: relative;*/
 	height:720px;
 	background-size: cover;
 	background-repeat: repeat, no-repeat;
 }
 
 .js-movie-info img {
-	height: 100%;
+	max-width: 100%;
 }
 
 
@@ -80,8 +82,8 @@ body {
 
 i {
 	position: absolute;
-	top: 45%;
-	left: 45%;
+	top: calc(50% - 16px); 
+	left: calc(50% - 16px);
 	color: #fff;
     opacity: .8;
     text-shadow: 0px 0px 30px rgba(0, 0, 0, 0.5);
@@ -119,12 +121,13 @@ header {
 
 header h1 {
 	margin: 0;
-	display: inline;
+	display: inline-block;
+	font-size: 20px;
 }
 
 header img {
 	height: 70px;
-	vertical-align: middle;
+	margin-right: 10px;
 }
 
 .js-back {
@@ -149,3 +152,7 @@ header img {
 	margin-bottom: 20px;
 }
 
+.headerAlign {
+ display: flex; 
+ align-items: center; 
+}
